@@ -1,3 +1,89 @@
+
+//Maximum Number of Words Found in Sentences
+var mostWordsFound = function(sentences) {
+   let max=0;
+    let array=[]
+    for(let i=0;i<sentences.length;i++){
+        array=sentences[i].split(" ")
+        if(array.length>max)
+            {
+                max=array.length
+            }
+    }
+    return max
+};
+///////////////Input: nums = [0,2,1,5,3,4]
+// Output: [0,1,2,4,5,3]
+// Explanation: The array ans is built as follows: 
+// ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+//     = [nums[0], nums[2], nums[1], nums[5], nums[3], nums[4]]
+//     = [0,1,2,4,5,3]
+var buildArray = function(nums) {
+    let res=[]
+    for(let i=0;i<nums.length;i++){
+        res[i]=nums[nums[i]]
+        
+    }
+    return res
+};
+// Remove Duplicates from Sorted Array
+var removeDuplicates = function(nums) {
+    for(let i=0; i<nums.length; i++){
+           if(nums[i] === nums[i+1])
+           {
+               nums.splice(i+1, 1); 
+               i--;
+           }
+       }
+       return nums.length
+   };
+   ///Remove Element
+   var removeElement = function(nums, val) {
+    for(let i=0;i<nums.length;i++){
+        if(nums[i]==val){
+           nums.splice(i,1)
+           
+           }
+    }
+    return nums.length
+};
+//////////////////Search Insert Position
+// Given a sorted array of distinct integers and a target value, return the index if the target is found. 
+// If not, return the index where it would be if it were inserted in order.  
+var searchInsert = function(nums, target) {
+    for(let i=0;i<nums.length;i++){
+   
+        if(nums[i]==target)
+            {
+                
+                return i
+            }
+        else
+            if(target<nums[i])
+                return i-1
+        else
+            if(target>nums[nums.length-1])
+                return i+1
+        else if (target < nums[0]) {
+        return 0;
+        }
+       
+    }
+};
+//Input: digits = [1,2,3]
+// Output: [1,2,4]
+// Explanation: The array represents the integer 123.
+// Incrementing by one gives 123 + 1 = 124.
+// Thus, the result should be [1,2,4].
+var plusOne = function(digits) {
+    
+    let join = parseInt(digits.join(''));
+    join++
+    return join.toString().split("");
+    
+};
+///
+//////////////////////*********************////////////////// */
 // peak element
 const peak = (arr, n) => {
     for (let i = 0; i < arr.length; i++) {
@@ -207,3 +293,18 @@ function charCount(s, c) {
 
 
 
+function checkSequence(a,b){
+    if (b.length == 0)
+        return true;
+     
+    // If length of a = 0
+    // that means b is not present in
+    // a so we return false
+    if (a.length == 0)
+        return false;
+     
+    if (a[0] == b[0])
+        return checkSequence(a.substring(1),b.substring(1));
+    else
+        return checkSequence(a.substring(1), b);
+}
