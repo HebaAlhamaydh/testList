@@ -110,7 +110,7 @@ function swip(x, y) {
     x = x - y;
     return { x, y }
 }
-///////////////////////////////////////////////////////////////////7***/////////////////////////////////
+///////////////////////////////////////////////////////////////////***7***/////////////////////////////////
 //input
 let num = [1, 2, 4, 3, 5, 6, 7, 8, 7, 9];
 //output
@@ -269,6 +269,7 @@ function missing(min, max) {
 //for example: Input = 153, 1^3 + 5^3 + 3^3 = 153 Output = true 
 // find the armstrong for example: 153=1^3 + 5^3 + 3^3
 ///1634 = 1*1*1*1 + 6*6*6*6* + 3*3*3*3 + 4*4*4*4
+//sum each digit power of length of number compare it is equal the number
 ///the sum of cubes of each digit is equal to the number itself
 //input 
 let armestrongNum = 1634;
@@ -296,11 +297,14 @@ function isArmstrongNum(armestrongNum) {
 let revNum = 1234;
 //output
 //4321
+//module the number of 10 and take the remainder ==> it is equal  the last digit
+//last digit multiply by 10 to move it to left
+//number divided by ten and take the integer 
 function reversedNum(revNum) {
     let reverse = 0;
     let lastNum;
     while (revNum != 0) {
-        lastNum = revNum % 10;//remider is the last number 1234%10==>4//123%10=3
+        lastNum = revNum % 10;//remainder is the last number 1234%10==>4//123%10=3
         reverse = reverse * 10 + lastNum;//0*10+4==>4//4*10+3==>43
         revNum = Math.floor(revNum / 10);//greatest integer 123/ 12 / 1 /0
     }
@@ -406,7 +410,7 @@ function sum(arr) {
     let min = arr[0];
     let max = arr[0];
     for (let i = 0; i < arr.length; i++) {
-        if (min > arr[0]) min = arr[i];
+        if (min > arr[i]) min = arr[i];
         if (max < arr[i]) max = arr[i];
     }
     let sum = 0;
@@ -436,46 +440,6 @@ function missing(a) {
 }
 // console.log(missing([0, 5, 4, 9, 3]));
 
-//(No built in methods allowed)
-//Find all the missing numbers between the min and the max number in this array 
-// array = [0, 5, 4, 9, 3]; output==>[ 1, 2, 6, 7, 8 ]
-// function missing2(numArr){
-//     let missing2 = [];
-//     // let min = numArr[0];
-//     // let max = numArr[0];
-
-//     // for (let i = 0; i < numArr.length; i++) {
-//     //     if (numArr[i] < min) min = numArr[i];
-//     //     if (numArr[i] > max) max = numArr[i];  
-//     // }
-//     for (let i = 0; i < numArr.length; i++) {
-//         for (let j = i + 1; j < numArr.length; j++) {
-//             if (numArr[i] > numArr[j]) {
-//                 temp = numArr[i];
-//                 numArr[i] = numArr[j];
-//                 numArr[j] = temp;
-//             }
-//         }
-//     }
-//     let diff = arr[0] - 0;
-//     for(let i = 0; i < numArr.length; i++)
-//     {
-//         // Check if diff and arr[i]-i
-//         // both are equal or not
-//         if (numArr[i] - i != diff)
-//         {
-//             // Loop for consecutive missing elements
-//             while (diff < numArr[i] - i)
-//             {
-//                missing2.push(i + diff);
-//                 diff++;
-//             }
-//         }
-//     }
-
-// return missing2
-// }
-// console.log(missing2([0, 5, 4, 9, 3]));
 
 //Find  the missing number in this array 
 function missingNum(arr) {
@@ -507,7 +471,7 @@ function prime() {
 }
 // prime()
 ////////////////////////////////////////////////////////**22**/////////////////////////////////////////////
-//6. Find all unique characters in a string .
+//6. Find all unique characters in a string .appear one time in the string
 //  Input:  Geeksforgeeks
 //output:[ 'G', 'f', 'o', 'r', 'g' ]
 function unique(str) {
@@ -574,7 +538,7 @@ function removedublicate(str) {
 
 ///////////////////////////////////////////////////**25**////////////////////////////////
 //remove duplicate in a array
-function removedublicate2(arr) {
+function removeDuplicateArray(arr) {
     let arrh = []
     for (let i = 0; i < arr.length; i++) {
         if (!arrh.includes(arr[i])) {
@@ -583,13 +547,13 @@ function removedublicate2(arr) {
     }
     return arrh
 }
-function removeDuplicateArray(arr) {
+function removeDuplicateArray2(arr) {
     let remo = arr.filter((ele, ind) => {
         return arr.indexOf(ele) === ind;
     })
     return remo
 }
-// console.log(removedublicate2([1,2,2,2,3,4,4,5,5]));
+// console.log(removeDuplicateArray2([1,2,2,2,3,4,4,5,5]));
 
 /////////////////////////////////////////////////////////////////////**26**///////////////////////
 // Add a number to the middle of a numbers array.
@@ -619,6 +583,7 @@ function addToMid(arr, num) {
 
 //Write a function that will return a string combined with the number of letters between the fist and the last letter.
 // input = 'Jack', output: 'J2k' What is the difference between get and post requests?
+//`interpolation`
 function stringbet(str) {
     return `${str[0]}${str.length - 2}${str[str.length - 1]}`;
 }
@@ -645,10 +610,7 @@ function rever(arr) {
     }
     return arr
 }
-// console.log(rever([1,2,3,4]));
-
-///////////////////////////////////////////////////**29**/////////////////////////////////
-
+// console.log(rever([0, 5, 4, 9, 3]));
 // reverse an array without defining a a new one and without using built in functions like array 
 //reverse for example: [1,2,3,4,5] => [5,4,3,2,1]
 function reverse2(arr) {
@@ -665,6 +627,22 @@ function reverse2(arr) {
 }
 // console.log([1,2,3,4,5] );
 // console.log(reverse2([1, 2, 3, 4, 5]));
+//////////////////////////////////////////////////////*29**//////////////////////////
+// console.log(rever([1,2,3,4]));
+//sort function for agiven array of numbers
+function sort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    return arr
+}
+// console.log("Sorted array=>", sort([4, 32, 2, 5, 8]));
 
 ////////////////////////////////////////////////**30**/////////////////////////////////////////
 
@@ -696,45 +674,29 @@ function compare(str1, str2) {
 
 //check if two words with different order of the letters have same letters or not
 function checkWords(str1, str2) {
-    let obj = {}
-    // for(let i=0;i<str1.length;i++){
-    //   if(obj[str1[i]]){
-    //     obj[str1[i]]+=1
-    //   }
-    //     else{
-    //   obj[str1[i]]=1
-    //     }
-    // }
-    // for(let i=0;i<str2.length;i++) {
-    //     if ( !str2[i] in obj) {
-    //        return false
-    //     }
-    //     return true
-    // }
-
-}
-// console.log(checkWords("listen","silent"));
-
-////////////////////////////////////////////////////////////////////**32**////////////////////////////////
-//sort function for agiven array of numbers
-function sort(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[i] > arr[j]) {
-                let temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
+    for (let i = 0; i < str2.length; i++) {
+        if (!str1.includes(str2[i])) {
+            return false;
         }
     }
-    return arr
+    return true;
 }
-// console.log("Sorted array=>", sort([4, 32, 2, 5, 8]));
+console.log(checkWords("listen", "silent"));
 
+////////////////////////////////////////////////////////////////////**32**////////////////////////////////
+//convert the first letter of each word in a string to uppercase
+function upper(str) {
+    let arr = str.split(" ");
+    let upperWords = arr.map((word) => {
+        return word[0].toUpperCase() + word.slice(1);
+    }).join(" ");
+    return upperWords
+}
 ///////////////////////////////////////////////////////////////////////**33**///////////////////////////////////// 
 //Given an array like this [1, 6, 9, 2, 5, 7, 11], 
 // write a function that returns the highest and the second highest values in the array
 function height(arr) {
+    //1.sort the array
     for (let i = 0; i < arr.length; i++) {
         for (let j = i + 1; j < arr.length; j++) {
             if (arr[i] > arr[j]) {
@@ -744,7 +706,7 @@ function height(arr) {
             }
         }
     }
-    return "highest element  is " + arr[arr.length - 1] + " the second highest value is " + arr[arr.length - 2];
+    return "highest value  is " + arr[arr.length - 1] + " second highest value is " + arr[arr.length - 2];
 }
 // console.log( height([4, 32, 2, 5, 8]));
 
@@ -761,6 +723,7 @@ const removeDublicate = (arr) => {
     console.log(newArr)
 }
 /////////////////////////
+//prime divide only by one and itself
 function isPrime(num) {
     for (var i = 2; i < num; i++) {
         if (num % i === 0) {
@@ -792,30 +755,31 @@ function checkIncludes(str1, str2) {
         if (!str1.includes(str2[i])) {
             return false
         }
-        else {
-            return true
-        }
     }
+    return true
 }
-// console.log(checkIncludes("Hello world, welcome to the universe.","g"));
+// console.log(checkIncludes("Hello world, welcome to the universe.", "ot"));
 
 ///////**3**////convert binary to decimal
 function binaryToDecimal(num) {
     let dec_value = 0;
     // Initializing base value to 1, i.e 2^0
     let base = 1;
+    //iterate from the last digit to first digit
     for (let i = num.length - 1; i >= 0; i--) {
-        if (num[i] == '1'){
+        if (num[i] == '1')
             dec_value += base;
             base = base * 2;
-        }     
     }
     return dec_value;
     // return parseInt(num, 2)
 }
-console.log(binaryToDecimal("10101001"));
+// console.log(binaryToDecimal("10101001"));
 ////////////////
 
+// to convert positive decimal to binary
+// let decimal = 10101001;
+// console.log( decimal.toString( 2 ));
 ///**4**////
 function nextUniqueYear(string) {
     let yearNum = +string + 1;//number
@@ -827,7 +791,7 @@ function nextUniqueYear(string) {
         nextUniqueYear(yearStr);
     }
 }
-nextUniqueYear("1987");
+// nextUniqueYear("1987");
 ////////
 //**5**if you have AAAAADDDAADDDD find the most repeated character,
 function repeated3(str) {
@@ -852,3 +816,44 @@ function repeated3(str) {
 // console.log(repeated3('swsssssssswaaanaeaa'));
 ///*6**
 //, check if the string had all the English alphabet or not and allow repeated characters
+////**7**
+//Given an array return an array that contains the sum of all repeated numbers
+// if they were next to each other if not return the same number 
+Input = [2, 2, 2, 7, 3, 3, 1, 2]
+//Output = [6,7,6,1,2]
+// let arrayF = [1, 2, 3, 3, 5, 7, 8, 2, 2, 2, 2, 4, 8, 8, 5];
+//output
+//[1,2,6,5,7,8,8,4,16,5]
+function sumRepeatition(arrayF) {
+    let result = [];
+    for (let i = 0; i < arrayF.length; i++) {
+        if (arrayF[i] === arrayF[i - 1]) {
+            let y = result.pop();//remove last element
+            result.push(y + arrayF[i]);
+        }
+        else {
+            result.push(arrayF[i]);
+        }
+    }
+    return result;
+}
+// console.log('9. sumRepeatition : ', sumRepeatition(Input));
+
+//Find all the missing numbers between the min and the max number in this array 
+//(with built in methods) array = [0, 5, 4, 9, 3]; output==>[ 1, 2, 6, 7, 8 ]
+function missing(a) {
+    let min = a[0];
+    let max = a[0];
+    let missing = [];
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] < min) min = a[i];
+        if (a[i] > max) max = a[i];
+    }
+    for (let i = min; i <= max; i++) {
+        if (a.indexOf(i) == -1) {
+            missing.push(i);
+        }
+    }
+    return missing
+}
+// console.log(missing([0, 5, 4, 9, 3]));
