@@ -329,3 +329,71 @@ function frequencyValue(arr) {
 }
 // console.log(frequencyValue([1,2,3,4]));
 /////////////////////////////////////////////////16/////////////////////////////
+// Input: encoded = [1,2,3], first = 1
+// Output: [1,0,2,1]
+// Explanation: If arr = [1,0,2,1], then first = 1 and encoded = [1 XOR 0, 0 XOR 2, 2 XOR 1] = [1,2,3]
+ /*
+1^1=0
+0^0=0
+1^0=1
+0^1=1
+encoded = [1,2,3], first = 1  Output: [1,0,2,1]
+output=[1,x,y,z]
+inverse xor is xor itself
+1^x=1---->(output[i] ^ x =encoded[i])===(x=encoded[i]^output[i])
+x^y=2
+y^z=3
+*/
+function decode(encoded,first){
+    let output=[first];
+    for(let i=0;i<encoded.length;i++){
+        output.push(output[i]^encoded[i])
+    }
+    return output;
+}
+// console.log(decode([1,2,3],1));
+////////////////////////////////////////////////17//////////////////////////////////////////
+/*
+Input: nums = [0,1,2,3,4], index = [0,1,2,2,1]
+Output: [0,4,1,3,2]
+Explanation:
+nums       index     target
+0            0        [0]
+1            1        [0,1]
+2            2        [0,1,2]
+3            2        [0,1,3,2]
+4            1        [0,4,1,3,2]
+*/
+function createArray(nums,index){
+    let output=[]
+    for (let i = 0; i < index.length; i++) {
+        output.splice(index[i],0,nums[i])
+    }
+    return output
+}
+// console.log(createArray([0,1,2,3,4],[0,1,2,2,1]));
+//////////////////////////////////////////18/////////////////////////
+/*
+Input: s = "codeleet", indices = [4,5,6,7,0,2,1,3]
+Output: "leetcode"
+You are given a string s and an integer array indices of the same length. 
+The string s will be shuffled such that the character at the ith position moves to indices[i] in the shuffled string.
+// output[indices[0]]=output[4]=>s[0]=c
+//output[indices[1]]=output[5]=>s[1]=o
+//output[indices[2]]=output[6]=>s[2]=d
+//output[indices[3]]=output[7]=>s[3]=e
+//output[indices[4]]=output[0]=>s[4]=l
+//output[indices[5]]=output[2]=>s[5]=e
+//output[indices[6]]=output[1]=>s[6]=e
+//output[indices[7]]=output[3]=>s[7]=t
+//output["l","e","e","t","c","o","d","e"]=>"leetcode"
+*/
+function shuffle(s,indices){
+    let output=[];
+    for (let i = 0; i < indices.length; i++) {
+        output[indices[i]]=s[i]  
+    } 
+    return output.join("")
+}
+console.log(shuffle("codeleet",[4,5,6,7,0,2,1,3]));
+///////////////////////////////////////////////////////19///////////////////////////
