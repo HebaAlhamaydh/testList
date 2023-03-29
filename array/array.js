@@ -308,3 +308,21 @@ function checkSequence(a,b){
     else
         return checkSequence(a.substring(1), b);
 }
+//////////////////////
+function makeZigZagArray(arr) {
+  let count = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    if ((i % 2 === 0 && arr[i] > arr[i - 1]) || (i % 2 !== 0 && arr[i] < arr[i - 1])) {
+      // element does not follow zig-zag pattern, replace it with appropriate value
+    //   arr[i] = arr[i - 1] * -1;
+      count++;
+    }
+  }
+
+  return count;
+}
+const arr = [1, 2, 3, 4, 5];
+const numReplacements = makeZigZagArray(arr);
+console.log(arr); // Output: [1, -2, 3, -4, 5]
+console.log(numReplacements); // Output: 2
