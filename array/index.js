@@ -95,5 +95,52 @@ function countDuplicateElements(arr) {
 // ["12","30%
   
   
-  
+  ///////////////////////////////
+  /////To solve this problem, we can use dynamic programming. We will define a 2D array dp, where dp[i][j] represents the number of distinct paths to reach warehouse[i][j] from warehouse[0][0]. We can then calculate dp[i][j] using the values of dp for previous cells.
+  // A forklift worker moves products from one place to
+  // the other in an automotive parts warehouse. There
+  // a map in the dashboard that shows, in real time,
+  // the open and blocked sections inside the
+  // warehouse. The map is displayed as an nxm
+  // matrix of 1's and O's which represent open and
+  // blocked sections respectively. A forklift driver
+  // always starts at the upper left corner of the map at
+  // warehouse[0][0] and tries to reach the bottom right
+  // section of the map or warehouse[n-1][m-1). Each
+  // movement must be in increasing value along a row
+  // or column but not both. Given the warehouse
+  // map, determine the number of distinct paths to get
+  // from warehouse[0][0] to warehouse[n-1][m-1). The
+  // number may be large, so return the value modulo
+  // (109+7)
+// The base cases are dp[0][0] = 1 (since there is only one way to reach the starting cell) and dp[0][j] = 1 if warehouse[0][j] is an open section, and similarly for dp[i][0]. For other cells, we can calculate dp[i][j] as follows:
+// If warehouse[i][j] is a blocked section, then dp[i][j] = 0.
+// Otherwise, dp[i][j] = dp[i-1][j] + dp[i][j-1] (since we can reach warehouse[i][j] either by coming from cell (i-1, j) or from cell (i, j-1)).
+// Finally, the answer will be dp[n-1][m-1] % (10^9 + 7), where % is the modulo operator
+  function countDistinctPaths(warehouse) {
+    const MOD = 1000000007;
+    const n = warehouse.length;
+    const m = warehouse[0].length;
+    const dp = new Array(n).fill().map(() => new Array(m).fill(0));
+    dp[0][0] = 1;
+    for (let j = 1; j < m; j++) {
+        if (warehouse[0][j] === 1) {
+            dp[0][j] = dp[0][j-1];
+        }
+    }
+    for (let i = 1; i < n; i++) {
+        if (warehouse[i][0] === 1) {
+            dp[i][0] = dp[i-1][0];
+        }
+    }
+    for (let i = 1; i < n; i++) {
+        for (let j = 1; j < m; j++) {
+            if (warehouse[i][j] === 1) {
+                dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % MOD;
+            }
+        }
+    }
+    return dp[n-1][m-1] % MOD;
+}
+
   
