@@ -1,3 +1,4 @@
+//kafana company problem
 // Given an array of integers, change it in such
 // a way that it follows a zig-zag pattern. A zig-
 // zag array is one where for each integer, its
@@ -55,21 +56,23 @@ function countDuplicateElements(arr) {
   }
 
   //////////////
-//   Application logs are used in analysis of interactions with an application and may be used to detect specific actions. 
-//   A log file is provided as a string array where each entry is in the form "user.id timestamp action"'.
-//    Each of the values is separated by a space. - Both user_id and timestamp consist only of digits, are at most 9 digits long and start with a non-zero digit. - timestamp represents the time in seconds since the application was last launched - action will be either "sign-in" or "sign-out" Given a log with entries in no particular order, return an array of strings that denote user_id's of users who signed out in maxSpan seconds or less after signing in.
+  // Application logs are used in analysis of interactions with an application and may be used to detect specific actions. 
+  // A log file is provided as a string array where each entry is in the form "user.id timestamp action"'.
+  //  Each of the values is separated by a space. - Both user_id and timestamp consist only of digits, are at most 9 digits long and start with a non-zero digit. - 
+  //timestamp represents the time in seconds since the application was last launched - action will be either "sign-in" or "sign-out" Given a log with entries in no particular order, 
+  //return an array of strings that denote user_id's of users who signed out in maxSpan seconds or less after signing in.
   function findUsersWithMaxSpan(log, maxSpan) {
-    const signInTimes = {};
-    const signOutTimes = {};
-    const result = [];
+    const signInTimes = {};//(an empty object that will be used to store the last sign-in time for each user) 
+    const signOutTimes = {};//(an empty object that will be used to store the last sign-out time for each user) 
+    const result = []; //store the user IDs of users who signed out within maxSpan seconds of signing in.
   
     for (let i = 0; i < log.length; i++) {
       const [userId, timestamp, action] = log[i].split(' ');
   
       if (action === 'sign-in') {
-        signInTimes[userId] = Number(timestamp);
+        signInTimes[userId] = parseInt(timestamp);//update with the last sign in for the user
       } else {
-        signOutTimes[userId] = Number(timestamp);
+        signOutTimes[userId] = parseInt(timestamp);//update with the last sign out for the user
         const span = signOutTimes[userId] - signInTimes[userId];
         if (span <= maxSpan) {
           result.push(userId);
@@ -79,9 +82,13 @@ function countDuplicateElements(arr) {
   
     return result;
   }
-//   In this code, we first create two hash maps signInTimes and signOutTimes to keep track of the latest sign-in and sign-out times for each user. We also create an empty array result to store the user IDs of users who signed out within maxSpan seconds of signing in.
+//   In this code, we first create two hash maps signInTimes and signOutTimes to keep track of the latest sign-in and sign-out times for each user.
+// We also create an empty array result to store the user IDs of users who signed out within maxSpan seconds of signing in.
   
-//   We then loop over the log and split each entry into its user ID, timestamp, and action components. For each sign-in event, we update the signInTimes hash map with the latest sign-in time for that user. For each sign-out event, we update the signOutTimes hash map with the sign-out time for that user, and calculate the time span between the sign-in and sign-out times.
+//   We then loop over the log and split each entry into its user ID, timestamp, and action components
+//.For each sign-in event, we update the signInTimes hash map with the latest sign-in time for that user.
+// For each sign-out event, we update the signOutTimes hash map with the sign-out time for that user, 
+//and calculate the time span between the sign-in and sign-out times.
   
 //   If the time span is less than or equal to maxSpan, we push the user ID onto the result array.
   
@@ -89,10 +96,11 @@ function countDuplicateElements(arr) {
   
 // logs
 // =[
-// ["30 99 sign-in", "30 105 sign-out", "12 100 sign-in", "20 80 sign-in", "12 120 sign-out", "20 101 sign-out", "21 110 sign-in"] maxSpan = 20 The users with id's 30 and 12 were not signed in for more than maxSpan
+// ["30 99 sign-in", "30 105 sign-out", "12 100 sign-in", "20 80 sign-in", "12 120 sign-out", "20 101 sign-out", "21 110 sign-in"]
+// maxSpan = 20 The users with id's 30 and 12 were not signed in for more than maxSpan
 // =20
 // In sorted numerical order, the return array is
-// ["12","30%
+// ["12","30"]
   
   
   ///////////////////////////////
