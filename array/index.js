@@ -91,7 +91,6 @@ function countDuplicateElements(arr) {
 //and calculate the time span between the sign-in and sign-out times.
   
 //   If the time span is less than or equal to maxSpan, we push the user ID onto the result array.
-  
 //   Finally, we return the result array, which contains the user IDs of users who signed out within maxSpan seconds of signing in.
   
 // logs
@@ -104,7 +103,7 @@ function countDuplicateElements(arr) {
   
   
   ///////////////////////////////
-  /////To solve this problem, we can use dynamic programming. We will define a 2D array dp, where dp[i][j] represents the number of distinct paths to reach warehouse[i][j] from warehouse[0][0]. We can then calculate dp[i][j] using the values of dp for previous cells.
+  // ///To solve this problem, we can use dynamic programming. We will define a 2D array dp, where dp[i][j] represents the number of distinct paths to reach warehouse[i][j] from warehouse[0][0]. We can then calculate dp[i][j] using the values of dp for previous cells.
   // A forklift worker moves products from one place to
   // the other in an automotive parts warehouse. There
   // a map in the dashboard that shows, in real time,
@@ -151,4 +150,43 @@ function countDuplicateElements(arr) {
     return dp[n-1][m-1] % MOD;
 }
 
+  //where dp[i][j] represents the number of distinct paths to reach warehouse[i][j] from warehouse[0][0]
+
+// const warehouse = [  [1,1],
+//                      [0,1]
+// ];
+// const warehouse = [  [1,1,0,1],
+//                      [1,1,1,1]
+// ];
+// const warehouse = [  [1,1,1,1],
+//                      [1,1,1,1],
+//                      [1,1,1,1]
+// ];
+// console.log(countDistinctPaths(warehouse)); // Output: 2
+
+  //////////////////designerPdfViewer////////////////////
+// When selecting text in a PDF document, each word is highlighted with a blue rectangle. Each letter of the selected word has a certain height within the rectangle.
+// Given the height of each letter within the highlighted block, the purpose of the function is to determine the area of the highlighted block.
+
+// Let’s use an example:
+
+// let h = [1,3,1,3,1,4,1,3,2,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5];
+// let word = “peak”;
+
+
+function designerPdfViewer(h, word) {
   
+  let letters = "abcdefghijklmnopqrstuvwxyz";
+  let letterHeight = [];
+  
+  for (let i = 0; i < word.length; i++){
+    letterHeight.push(h[letters.indexOf(word[i])]);
+  }
+  // let max=letterHeight.sort();
+  // max=letterHeight[letterHeight.length-1]
+  // or 
+  let tallest = letterHeight.sort()[letterHeight.length-1];
+  
+  return tallest * word.length;
+  
+}

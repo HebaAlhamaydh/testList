@@ -50,11 +50,11 @@ function revers(str) {
 // Output = ' lost am I ' 
 function reverse(str) {
     let newArr = [];
-    let arr = str.split(" ");
+    let arr = str.split(" ");//return array
     for (let i = arr.length - 1; i >= 0; i--) {
         newArr.push(arr[i])
     }
-    return newArr.join(" ")
+    return newArr.join(" ")//convert to sring
     //    return str.split(" ").reverse().join(" ");
 }
 // console.log(reverse( ' I am lost'));
@@ -68,8 +68,8 @@ function rearrange(str) {
     let newStr = "";
     let arr = str.split('');//return array
     while (arr.length > 0) {
-        let shift1 = arr.shift();//delete  first
-        let pop1 = arr.pop();//delete last
+        let shift1 = arr.shift();//  first 
+        let pop1 = arr.pop();// last
         newStr += pop1 + shift1;
     }
     return newStr
@@ -87,6 +87,7 @@ function duplicate(arr) {
         arr.push(arr[i])
     }
     return arr;
+    //  return arr.concat(arr);
 }
 // console.log(duplicate(arr));
 
@@ -130,7 +131,7 @@ let ex = [1, 2, 3, 4, 7, 9, 5, 8, 9];
 //2 'index for 1st repeated num'
 function idxOf1stRepeated(ex) {
     for (let i = 0; i < ex.length; i++) {
-        for (let j = i + 1; j < ex.length; j++) {
+        for (let j = i + 1; j < ex.length; j++) {//the second element
             if (ex[i] === ex[j]) {
                 return i;
             }
@@ -166,7 +167,7 @@ let arrF = [1, 5, 6, 7, 8, 9, 10, 12];
 //[1,8,5,9,6,10,7,12]
 function newArrange(arrF) {
     let newArr = [];
-    let middle = arrF.length / 2;
+    let middle =  Math.floor(arrF.length / 2)
     for (let i = 0; i < arrF.length / 2; i++) {
         newArr.push(arrF[i]);
         newArr.push(arrF[middle])
@@ -189,7 +190,7 @@ function newArrange2(arr) {
 function newArrange3(arr) {
     let newArray = [];
     let mid = Math.floor(arr.length / 2)
-    for (let i = 0; i < mid; i++) {
+    for (let i = 0; i < arr.length / 2; i++) {
         newArray.push(arr[i]);
         newArray.push(arr[i + mid]);
     }
@@ -200,15 +201,20 @@ function newArrange3(arr) {
 ////Write a function that will take in an array and index and return new shuffled array
 // where the fist element will be starting from that index and the second will be the original one and so on: 
 // exp: // input: [1, 2, 3, 4, 5, 6], idx = 3 // output: [4, 1, 5, 2, 6, 3] 
+//1
+function shuffled1(arr, index) {
+    let newArr = [];
+    
+    for (let i = 0; i < index; i++) {
+        newArr.push(arr[index])
+        newArr.push(arr[i]);
+        index++;
+    }
+    return newArr;
+}
+//2
 function shuffled(arr, index) {
-    // let newArr = [];
-    // let len = index;
-    // for (let i = 0; i < len; i++) {
-    //     newArr.push(arr[index])
-    //     newArr.push(arr[i]);
-    //     index++;
-    // }
-    // return newArr;
+ 
     let arr2 = [];
     arr2.push(arr[index]);
     for (let i = 0; i < index; i++) {
@@ -217,6 +223,7 @@ function shuffled(arr, index) {
     }
     return arr2;
 }
+//3
 function shuffled2(arr, index) {
     let newArray = [];
     for (let i = 0; i < index; i++) {
@@ -239,7 +246,7 @@ function sumRepeatition(arrayF) {
     let result = [];
     for (let i = 0; i < arrayF.length; i++) {
         if (arrayF[i] === arrayF[i - 1]) {
-            let y = result.pop();//remove last element
+            let y = result.pop();//assigned last element
             result.push(y + arrayF[i]);
         }
         else {
@@ -265,9 +272,9 @@ function missing(min, max) {
 // console.log(missing(min,max));
 //////////////////////////////////////////////////////////////////////////////////**13**//////////////////////////
 
-// Check if the the cube of each number in a given is the same to that number 
+// 1)Check if the the cube of each number in a given is the same to that number 
 //for example: Input = 153, 1^3 + 5^3 + 3^3 = 153 Output = true 
-// find the armstrong for example: 153=1^3 + 5^3 + 3^3
+// 2)find the armstrong for example: 153=1^3 + 5^3 + 3^3
 ///1634 = 1*1*1*1 + 6*6*6*6* + 3*3*3*3 + 4*4*4*4
 //sum each digit power of length of number compare it is equal the number
 ///the sum of cubes of each digit is equal to the number itself
@@ -280,8 +287,8 @@ function isArmstrongNum(armestrongNum) {
     let n = armestrongNum.toString().split('');
     let result = 0;
     for (let i = 0; i < n.length; i++) {
-        // result += n[i] ** n.length;
-        // result += n[i] *n[i] *n[i] *n[i] ;
+        //1) result += n[i] ** n.length;  ///exponentiation operator (**) 
+        //2) result += n[i] *n[i] *n[i] *n[i] ;
         result += Math.pow(Number(n[i]), n.length)
     }
     if (result === armestrongNum) return true;
@@ -304,8 +311,8 @@ function reversedNum(revNum) {
     let reverse = 0;
     let lastNum;
     while (revNum != 0) {
-        lastNum = revNum % 10;//remainder is the last number 1234%10==>4//123%10=3
-        reverse = reverse * 10 + lastNum;//0*10+4==>4//4*10+3==>43
+        lastNum = revNum % 10;//الباقي remainder is the last number 1234%10==>4//123%10=3
+        reverse = reverse * 10 + lastNum;//0*10+4==>4//4*10+3==>43//to do shift multiply by 10
         revNum = Math.floor(revNum / 10);//greatest integer 123/ 12 / 1 /0
     }
     return reverse;
