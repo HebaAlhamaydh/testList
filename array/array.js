@@ -1,5 +1,5 @@
 
-//Maximum Number of Words Found in Sentences
+//1)  Maximum Number of Words Found in Sentences/////////////////*****1*****////////
 var mostWordsFound = function(sentences) {
    let max=0;
     let array=[]
@@ -12,6 +12,7 @@ var mostWordsFound = function(sentences) {
     }
     return max
 };
+//////////////////////////////////////////////////******2****//////////////////////////
 ///////////////Input: nums = [0,2,1,5,3,4]
 // Output: [0,1,2,4,5,3]
 // Explanation: The array ans is built as follows: 
@@ -26,7 +27,7 @@ var buildArray = function(nums) {
     }
     return res
 };
-// Remove Duplicates from Sorted Array
+// Remove Duplicates from Sorted Array/////////////////******3****//////////// */
 var removeDuplicates = function(nums) {
     for(let i=0; i<nums.length; i++){
            if(nums[i] === nums[i+1])

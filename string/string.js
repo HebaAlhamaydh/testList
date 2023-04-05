@@ -46,6 +46,7 @@ function revers(str) {
     return newStr
 }
 // console.log(revers('i.like.banana'));
+
 // Reverse a sentence Input = ' I am lost'
 // Output = ' lost am I ' 
 function reverse(str) {
@@ -128,7 +129,7 @@ function repeate(arr) {
 //input
 let ex = [1, 2, 3, 4, 7, 9, 5, 8, 9];
 //output
-//2 'index for 1st repeated num'
+//5'index for 1st repeated num'
 function idxOf1stRepeated(ex) {
     for (let i = 0; i < ex.length; i++) {
         for (let j = i + 1; j < ex.length; j++) {//the second element
@@ -138,6 +139,7 @@ function idxOf1stRepeated(ex) {
             // else continue;
         }
     }
+ 
 }
 //   console.log('idxOf1stRepeated : ' ,idxOf1stRepeated(ex));
 //////////////////////////////////////////////////////////////////////***9***/////////////////////////////
@@ -246,7 +248,7 @@ function sumRepeatition(arrayF) {
     let result = [];
     for (let i = 0; i < arrayF.length; i++) {
         if (arrayF[i] === arrayF[i - 1]) {
-            let y = result.pop();//assigned last element
+            let y = result.pop();//assigned last element(remove)arr[i-1]=>y الي كان
             result.push(y + arrayF[i]);
         }
         else {
@@ -409,6 +411,31 @@ function repeated3(str) {
     return text
 }
 // console.log(repeated3('swsssssssswaaanaeaa'));
+// given an integer array count the number of element that occur more than once 
+function countDuplicateElements(arr) {
+    const obj = {};
+    let duplicates = 0;
+  
+    // count the occurrence of each element in the array
+    for (let i = 0; i < arr.length; i++) {
+      if (obj[arr[i]] ) {
+        obj[arr[i]]++;
+       
+      } else {
+        obj[arr[i]] = 1;
+      }
+    }
+  
+    // count the number of elements that occur more than once
+    for (let key in obj) {
+      if (obj[key] > 1) {
+        duplicates++;
+      }
+    }
+  
+    return duplicates;
+  }
+
 
 ////////////////////////////////////////////////////**19**/////////////////////////////////
 //2.the sum of number that falls between the smaller and the largest number in that array without using built-in methods 
@@ -439,7 +466,7 @@ function missing(a) {
         if (a[i] > max) max = a[i];
     }
     for (let i = min; i <= max; i++) {
-        if (a.indexOf(i) == -1) {
+        if (a.indexOf(i) == -1) {//missing
             missing.push(i);
         }
     }
@@ -554,6 +581,7 @@ function removeDuplicateArray(arr) {
     }
     return arrh
 }
+///////////////
 function removeDuplicateArray2(arr) {
     let remo = arr.filter((ele, ind) => {
         return arr.indexOf(ele) === ind;
@@ -585,6 +613,10 @@ function addToMid(arr, num) {
     return newArr
 }
 // console.log(addToMid([1,2,3,4,5,6],10));
+//output [
+//   1, 2, 3, 10,
+//   4, 5, 6
+// ]
 
 ///////////////////////////////////////////////////////// **27**//////////////////////////////////////////////
 
@@ -618,6 +650,7 @@ function rever(arr) {
     return arr
 }
 // console.log(rever([0, 5, 4, 9, 3]));
+
 // reverse an array without defining a a new one and without using built in functions like array 
 //reverse for example: [1,2,3,4,5] => [5,4,3,2,1]
 function reverse2(arr) {
@@ -717,7 +750,7 @@ function height(arr) {
 }
 // console.log( height([4, 32, 2, 5, 8]));
 
-//////////////////////////sort array
+//////////////////////////sort array//////////////////////////////////**34**/////////////////////
 const sortArr = (arr) => {
     return arr.sort((a, b) => a - b);
 }
@@ -729,7 +762,7 @@ const removeDublicate = (arr) => {
     })
     console.log(newArr)
 }
-/////////////////////////
+////////////////////////////////////////////////////////////////////////**35////////// */
 //prime divide only by one and itself
 function isPrime(num) {
     for (var i = 2; i < num; i++) {
@@ -739,7 +772,7 @@ function isPrime(num) {
     }
     return true;
 }
-//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////**36**//////
 //***1**convert the first letter of each word in a string to uppercase
 function upper(str) {
     let arr = str.split(" ");
@@ -788,6 +821,12 @@ function binaryToDecimal(num) {
 // let decimal = 10101001;
 // console.log( decimal.toString( 2 ));
 ///**4**////
+// new Set(digits) creates a new Set object that contains the elements of the digits array.
+// A Set is a built-in object in JavaScript that represents a collection of unique values. When we create a Set object with new Set(digits), it takes the elements of the digits array and adds them to the Set,
+//  removing any duplicates in the process.
+//We can use the size property of the Set object to determine how many unique digits there are in the array. 
+// the Set object to determine how many unique digits there are in the array. If the length of the digits array is equal to the size of the uniqueDigits Set, then we know that all the digits in the array are unique
+//انشاء obj بنفس عناصر digit array مع حذف التكرار
 function nextUniqueYear(string) {
     let yearNum = +string + 1;//number
     let yearStr = yearNum.toString();//string
@@ -797,6 +836,29 @@ function nextUniqueYear(string) {
     } else {
         nextUniqueYear(yearStr);
     }
+}
+////////////another way/////
+function nextUniqueYear(year) {
+// Convert the input year to a number and add 1 to it
+let nextYear = Number(year) + 1;
+  
+// Loop until we find a unique year
+while (true) {
+  // Convert the next year to a string and split it into an array of digits
+  let digits = nextYear.toString().split('');
+  
+  // Use a Set to remove duplicates from the digits array
+  let uniqueDigits = new Set(digits);
+  
+  // If the length of the Set is the same as the length of the digits array,
+  // we have a unique year, so we return it
+  if (uniqueDigits.size === digits.length) {
+    return nextYear.toString();
+  }
+  
+  // Otherwise, we increment the next year and continue the loop
+  nextYear++;
+}
 }
 // nextUniqueYear("1987");
 ////////

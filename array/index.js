@@ -1,4 +1,4 @@
-//kafana company problem
+//1)  kafana company problem
 // Given an array of integers, change it in such
 // a way that it follows a zig-zag pattern. A zig-
 // zag array is one where for each integer, its
@@ -30,7 +30,7 @@ console.log(arr); // Output: [1, -2, 3, -4, 5]
 console.log(numReplacements); // Output: 2
 ///////////
 
-// given an integer array count the number of element that occur more than once 
+// 2)  given an integer array count the number of element that occur more than once 
 function countDuplicateElements(arr) {
     const obj = {};
     let duplicates = 0;
@@ -56,6 +56,7 @@ function countDuplicateElements(arr) {
   }
 
   //////////////
+  // logs=["30 99 sign-in", "30 105 sign-out", "12 100 sign-in", "20 80 sign-in", "12 120 sign-out", "20 101 sign-out", "21 110 sign-in"]
   // Application logs are used in analysis of interactions with an application and may be used to detect specific actions. 
   // A log file is provided as a string array where each entry is in the form "user.id timestamp action"'.
   //  Each of the values is separated by a space. - Both user_id and timestamp consist only of digits, are at most 9 digits long and start with a non-zero digit. - 
@@ -74,7 +75,7 @@ function countDuplicateElements(arr) {
       } else {
         signOutTimes[userId] = parseInt(timestamp);//update with the last sign out for the user
         const span = signOutTimes[userId] - signInTimes[userId];
-        if (span <= maxSpan) {
+        if (span <= maxSpan) {//بمدة اقل من المحددة عمل تسجيل خروج بسرعة 
           result.push(userId);
         }
       }
@@ -103,7 +104,7 @@ function countDuplicateElements(arr) {
   
   
   ///////////////////////////////
-  // ///To solve this problem, we can use dynamic programming. We will define a 2D array dp, where dp[i][j] represents the number of distinct paths to reach warehouse[i][j] from warehouse[0][0]. We can then calculate dp[i][j] using the values of dp for previous cells.
+  ///To solve this problem, we can use dynamic programming. We will define a 2D array dp, where dp[i][j] represents the number of distinct paths to reach warehouse[i][j] from warehouse[0][0]. We can then calculate dp[i][j] using the values of dp for previous cells.
   // A forklift worker moves products from one place to
   // the other in an automotive parts warehouse. There
   // a map in the dashboard that shows, in real time,
@@ -125,7 +126,7 @@ function countDuplicateElements(arr) {
 // Otherwise, dp[i][j] = dp[i-1][j] + dp[i][j-1] (since we can reach warehouse[i][j] either by coming from cell (i-1, j) or from cell (i, j-1)).
 // Finally, the answer will be dp[n-1][m-1] % (10^9 + 7), where % is the modulo operator
   function countDistinctPaths(warehouse) {
-    const MOD = 1000000007;
+    const MOD = 10^9+7;
     const n = warehouse.length;
     const m = warehouse[0].length;
     const dp = new Array(n).fill().map(() => new Array(m).fill(0));
@@ -165,7 +166,8 @@ function countDuplicateElements(arr) {
 // console.log(countDistinctPaths(warehouse)); // Output: 2
 
   //////////////////designerPdfViewer////////////////////
-// When selecting text in a PDF document, each word is highlighted with a blue rectangle. Each letter of the selected word has a certain height within the rectangle.
+// When selecting text in a PDF document, each word is highlighted with a blue rectangle. 
+// Each letter of the selected word has a certain height within the rectangle.
 // Given the height of each letter within the highlighted block, the purpose of the function is to determine the area of the highlighted block.
 
 // Let’s use an example:
@@ -189,4 +191,40 @@ function designerPdfViewer(h, word) {
   
   return tallest * word.length;
   
+}
+// When a contiguous block of text is selected in a PDF viewer, the selection is highlighted with a blue rectangle.
+//  In this PDF viewer, each word is highlighted independently. For example:
+// There is a list of  character heights aligned by index to their letters. For example, 'a' is at index  and 'z' is at index . There will also be a string. 
+// Using the letter heights given, determine the area of the rectangle highlight in  assuming all letters are  wide.
+
+////////////////////
+// s: integer, starting point of Sam's house location.
+// t: integer, ending location of Sam's house location.
+// a: integer, location of the Apple tree.
+// b: integer, location of the Orange tree.
+// apples: integer array, distances at which each apple falls from the tree.
+// oranges: integer array, distances at which each orange falls from the tree.
+// s = 7, t = 11, a = 5, b = 15, apples = [-2, 2, 1], oranges = [5, -6]
+// totalApples = 0, totalOranges = 0
+// Traverse through apples list.
+// index = 0 | 5 + -2 >= 7 && 5 + -2 <= 11 becomes false.
+// index = 1 | 5 + 2 >= 7 && 5 + 2 <= 11 becomes true.
+// totalApples++ | totalApples = 1.
+// index = 2 | 5 + 1 >= 7 && 5 + 1 <= 11 becomes false.
+
+function countApplesAndOranges(s, t, a, b, apples, oranges) {
+  let countApple=0;
+  let countOranges=0;
+  for(let i=0;i<apples.length;i++){
+if((a+apples[i])>=s&&(a+apples[i])<=t){
+  countApple++;
+}
+  }
+  for(let j=0;j<oranges.length;j++){
+if((b+oranges[i])>=s&&(b+oranges[i]<=t)){
+  countOranges++;
+}
+  }
+  console.log(countApple);
+  console.log(countOranges);
 }
